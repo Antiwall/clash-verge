@@ -33,7 +33,7 @@ async function resolve() {
   const { version } = require("../package.json");
 
   const tag = META ? "meta" : ALPHA ? "alpha" : `v${version}`;
-  const buildCmd = META ? `yarn build -f default-meta` : `yarn build`;
+  const buildCmd = META ? `npm build -f default-meta` : `npm build`;
 
   console.log(`[INFO]: Upload to tag "${tag}"`);
   console.log(`[INFO]: Building app. "${buildCmd}"`);

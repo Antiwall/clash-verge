@@ -6,8 +6,8 @@
   "build": {
     "distDir": "../dist",
     "devPath": "http://localhost:3000/",
-    "beforeDevCommand": "yarn run web:dev",
-    "beforeBuildCommand": "yarn run web:build"
+    "beforeDevCommand": "npm run web:dev",
+    "beforeBuildCommand": "npm run web:build"
   },
   "tauri": {
     "systemTray": {
@@ -26,8 +26,8 @@
         "icons/icon.ico"
       ],
       "resources": ["resources"],
-      "externalBin": ["sidecar/clash", "sidecar/clash-meta"],
-      "copyright": "© 2022 zzzgydi All Rights Reserved",
+      "externalBin": ["sidecar/clash-meta"],
+      "copyright": "© 2024 Antiwall All Rights Reserved",
       "category": "DeveloperTool",
       "shortDescription": "A Clash GUI based on tauri.",
       "longDescription": "A Clash GUI based on tauri.",
@@ -51,13 +51,13 @@
       }
     },
     "updater": {
-      "active": true,
+      "active": false,
       "endpoints": [
-        "https://ghproxy.com/https://github.com/zzzgydi/clash-verge/releases/download/updater/update-proxy.json",
-        "https://github.com/zzzgydi/clash-verge/releases/download/updater/update.json"
+        "https://mirror.ghproxy.com/https://github.com/Antiwall/clash-verge/releases/download/updater/update-proxy.json",
+        "https://github.com/Antiwall/clash-verge/releases/download/updater/update.json"
       ],
       "dialog": false,
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDExNUFBNTBBN0FDNEFBRTUKUldUbHFzUjZDcVZhRVRJM25NS3NkSFlFVElxUkNZMzZ6bHUwRVJjb2F3alJXVzRaeDdSaTA2YWYK"
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDYxRTA3Rjk0ODFFRkEzMjEKUldRaG8rK0JsSC9nWWJPVEVabkRpYis2MXNVL2JhUEo4blllUVFYbVdIYTN2OStUMWVka00zRVgK%"
     },
     "allowlist": {
       "shell": {

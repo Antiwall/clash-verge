@@ -21,7 +21,7 @@ pub const DEFAULT_FIELDS: [&str; 5] = [
     "rule-providers",
 ];
 
-pub const OTHERS_FIELDS: [&str; 30] = [
+pub const OTHERS_FIELDS: [&str; 31] = [
     "dns",
     "tun",
     "ebpf",
@@ -52,6 +52,7 @@ pub const OTHERS_FIELDS: [&str; 30] = [
     "find-process-mode",         // meta
     "external-controller-tls",   // meta
     "global-client-fingerprint", // meta
+    "skip-auth-prefixes",        //  meta
 ];
 
 pub fn use_clash_fields() -> Vec<String> {

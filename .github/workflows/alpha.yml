@@ -18,7 +18,7 @@ jobs:
       matrix:
         os: [windows-latest, ubuntu-20.04, macos-latest]
     runs-on: ${{ matrix.os }}
-    if: startsWith(github.repository, 'zzzgydi')
+    if: startsWith(github.repository, 'Antiwall')
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -35,7 +35,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "16"
-          cache: "yarn"
+          cache: "pnpm"
 
       - name: Delete current release assets
         if: startsWith(matrix.os, 'ubuntu-')
@@ -61,10 +61,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libgtk-3-dev webkit2gtk-4.0 libappindicator3-dev librsvg2-dev patchelf openssl
 
-      - name: Yarn install and check
+      - name: pnpm install and check
         run: |
-          yarn install --network-timeout 1000000 --frozen-lockfile
-          yarn run check --force
+          pnpm install --network-timeout 1000000 --frozen-lockfile
+          npm run check --force
 
       - name: Tauri build
         uses: tauri-apps/tauri-action@v0
@@ -83,8 +83,8 @@ jobs:
       - name: Portable Bundle
         if: startsWith(matrix.os, 'windows-')
         run: |
-          yarn build
-          yarn run portable
+          npm build
+          npm run portable
         env:
           TAG_NAME: alpha
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

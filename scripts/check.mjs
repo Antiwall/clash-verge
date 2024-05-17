@@ -15,29 +15,29 @@ const SIDECAR_HOST = execSync("rustc -vV")
   .match(/(?<=host: ).+(?=\s*)/g)[0];
 
 /* ======= clash ======= */
-const CLASH_STORAGE_PREFIX = "https://release.dreamacro.workers.dev/";
-const CLASH_URL_PREFIX =
-  "https://github.com/Dreamacro/clash/releases/download/premium/";
-const CLASH_LATEST_DATE = "latest";
+// const CLASH_STORAGE_PREFIX = "https://release.dreamacro.workers.dev/";
+// const CLASH_URL_PREFIX =
+//   "https://github.com/Dreamacro/clash/releases/download/premium/";
+// const CLASH_LATEST_DATE = "latest";
 
-const CLASH_MAP = {
-  "win32-x64": "clash-windows-amd64",
-  "darwin-x64": "clash-darwin-amd64",
-  "darwin-arm64": "clash-darwin-arm64",
-  "linux-x64": "clash-linux-amd64",
-  "linux-arm64": "clash-linux-arm64",
-};
+// const CLASH_MAP = {
+//   "win32-x64": "clash-windows-amd64",
+//   "darwin-x64": "clash-darwin-amd64",
+//   "darwin-arm64": "clash-darwin-arm64",
+//   "linux-x64": "clash-linux-amd64",
+//   "linux-arm64": "clash-linux-arm64",
+// };
 
 /* ======= clash meta ======= */
-const META_URL_PREFIX = `https://github.com/MetaCubeX/Clash.Meta/releases/download/`;
-const META_VERSION = "v1.16.0";
+const META_URL_PREFIX = `https://github.com/MetaCubeX/mihomo/releases/download/`;
+const META_VERSION = "v1.18.4";
 
 const META_MAP = {
-  "win32-x64": "clash.meta-windows-amd64-compatible",
-  "darwin-x64": "clash.meta-darwin-amd64",
-  "darwin-arm64": "clash.meta-darwin-arm64",
-  "linux-x64": "clash.meta-linux-amd64-compatible",
-  "linux-arm64": "clash.meta-linux-arm64",
+  "win32-x64": "mihomo-windows-amd64-compatible",
+  "darwin-x64": "mihomo-darwin-amd64",
+  "darwin-arm64": "mihomo-darwin-arm64",
+  "linux-x64": "mihomo-linux-amd64-compatible",
+  "linux-arm64": "mihomo-linux-arm64",
 };
 
 /**
@@ -45,48 +45,48 @@ const META_MAP = {
  */
 
 const { platform, arch } = process;
-if (!CLASH_MAP[`${platform}-${arch}`]) {
-  throw new Error(`clash unsupported platform "${platform}-${arch}"`);
-}
+// if (!CLASH_MAP[`${platform}-${arch}`]) {
+//   throw new Error(`clash unsupported platform "${platform}-${arch}"`);
+// }
 if (!META_MAP[`${platform}-${arch}`]) {
   throw new Error(`clash meta unsupported platform "${platform}-${arch}"`);
 }
 
-function clash() {
-  const name = CLASH_MAP[`${platform}-${arch}`];
+// function clash() {
+//   const name = CLASH_MAP[`${platform}-${arch}`];
 
-  const isWin = platform === "win32";
-  const urlExt = isWin ? "zip" : "gz";
-  const downloadURL = `${CLASH_URL_PREFIX}${name}-${CLASH_LATEST_DATE}.${urlExt}`;
-  const exeFile = `${name}${isWin ? ".exe" : ""}`;
-  const zipFile = `${name}.${urlExt}`;
+//   const isWin = platform === "win32";
+//   const urlExt = isWin ? "zip" : "gz";
+//   const downloadURL = `${CLASH_URL_PREFIX}${name}-${CLASH_LATEST_DATE}.${urlExt}`;
+//   const exeFile = `${name}${isWin ? ".exe" : ""}`;
+//   const zipFile = `${name}.${urlExt}`;
 
-  return {
-    name: "clash",
-    targetFile: `clash-${SIDECAR_HOST}${isWin ? ".exe" : ""}`,
-    exeFile,
-    zipFile,
-    downloadURL,
-  };
-}
+//   return {
+//     name: "clash",
+//     targetFile: `clash-${SIDECAR_HOST}${isWin ? ".exe" : ""}`,
+//     exeFile,
+//     zipFile,
+//     downloadURL,
+//   };
+// }
 
-function clashS3() {
-  const name = CLASH_MAP[`${platform}-${arch}`];
+// function clashS3() {
+//   const name = CLASH_MAP[`${platform}-${arch}`];
 
-  const isWin = platform === "win32";
-  const urlExt = isWin ? "zip" : "gz";
-  const downloadURL = `${CLASH_STORAGE_PREFIX}${CLASH_LATEST_DATE}/${name}-${CLASH_LATEST_DATE}.${urlExt}`;
-  const exeFile = `${name}${isWin ? ".exe" : ""}`;
-  const zipFile = `${name}.${urlExt}`;
+//   const isWin = platform === "win32";
+//   const urlExt = isWin ? "zip" : "gz";
+//   const downloadURL = `${CLASH_STORAGE_PREFIX}${CLASH_LATEST_DATE}/${name}-${CLASH_LATEST_DATE}.${urlExt}`;
+//   const exeFile = `${name}${isWin ? ".exe" : ""}`;
+//   const zipFile = `${name}.${urlExt}`;
 
-  return {
-    name: "clash",
-    targetFile: `clash-${SIDECAR_HOST}${isWin ? ".exe" : ""}`,
-    exeFile,
-    zipFile,
-    downloadURL,
-  };
-}
+//   return {
+//     name: "clash",
+//     targetFile: `clash-${SIDECAR_HOST}${isWin ? ".exe" : ""}`,
+//     exeFile,
+//     zipFile,
+//     downloadURL,
+//   };
+// }
 
 function clashMeta() {
   const name = META_MAP[`${platform}-${arch}`];
@@ -266,7 +266,7 @@ async function downloadFile(url, path) {
  * main
  */
 const SERVICE_URL =
-  "https://github.com/zzzgydi/clash-verge-service/releases/download/latest";
+  "https://github.com/Antiwall/clash-verge-service/releases/download/latest";
 
 const resolveService = () =>
   resolveResource({
@@ -300,7 +300,7 @@ const resolveGeoIP = () =>
   });
 
 const tasks = [
-  { name: "clash", func: () => resolveSidecar(clashS3()), retry: 5 },
+  // { name: "clash", func: () => resolveSidecar(clashS3()), retry: 5 },s
   { name: "clash-meta", func: () => resolveSidecar(clashMeta()), retry: 5 },
   { name: "wintun", func: resolveWintun, retry: 5, winOnly: true },
   { name: "service", func: resolveService, retry: 5, winOnly: true },

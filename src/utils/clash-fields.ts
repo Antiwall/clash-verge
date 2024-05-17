@@ -49,4 +49,5 @@ export const OTHERS_FIELDS = [
   "find-process-mode", // meta
   "external-controller-tls", // meta
   "global-client-fingerprint", // meta
+  "skip-auth-prefixes", //  meta
 ] as const;

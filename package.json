@@ -50,6 +50,7 @@
     "@types/lodash": "^4.14.180",
     "@types/lodash-es": "^4.17.7",
     "@types/react-dom": "^18.0.11",
+    "@types/react": "17.0.43",
     "@vitejs/plugin-react": "^2.0.1",
     "adm-zip": "^0.5.9",
     "cross-env": "^7.0.3",

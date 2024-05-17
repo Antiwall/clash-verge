@@ -5,7 +5,7 @@ on: workflow_dispatch
 jobs:
   release-update:
     runs-on: ubuntu-latest
-    if: startsWith(github.repository, 'zzzgydi')
+    if: startsWith(github.repository, 'Antiwall')
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -14,12 +14,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "16"
-          cache: "yarn"
+          cache: "pnpm"
 
-      - name: Yarn install
-        run: yarn install --network-timeout 1000000 --frozen-lockfile
+      - name: pnpm install
+        run: pnpm install --network-timeout 1000000 --frozen-lockfile
 
       - name: Release updater file
-        run: yarn run updater
+        run: npm run updater
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
