@@ -48,8 +48,13 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v4
         with:
-          node-version: "16"
-          cache: "pnpm"
+          node-version: "20"
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 9
+          run_install: false
 
       - name: Install Dependencies (ubuntu only)
         if: startsWith(github.event.inputs.os, 'ubuntu-')
@@ -59,7 +64,7 @@ jobs:
 
       - name: pnpm install and check
         run: |
-          pnpm install --network-timeout 1000000 --frozen-lockfile
+          pnpm install --frozen-lockfile
           npm run check
 
       - name: Tauri build

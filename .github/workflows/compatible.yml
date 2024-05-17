@@ -42,9 +42,15 @@ jobs:
           workspaces: src-tauri
 
       - name: Install Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: "20"
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 9
+          run_install: false
 
       # - name: Install Dependencies (ubuntu18 only)
       #   if: matrix.targets.os == 'ubuntu-18.04'
@@ -73,7 +79,7 @@ jobs:
 
       - name: pnpm install and check
         run: |
-          pnpm install --network-timeout 1000000
+          pnpm install
           npm run check
 
       - name: Tauri build
